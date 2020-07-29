@@ -3,7 +3,7 @@
 on:
   push:
   schedule:
-    - cron: "0 12 * * *" # daily at 12:00
+    - cron: "0 17 * * *" # daily at noon/11a Central.
 jobs:
   run:
     runs-on: ubuntu-latest
