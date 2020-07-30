@@ -1,7 +1,6 @@
 # .github/workflows/treebeard.yml
 # Run all notebooks on every push and daily
 on:
-  push:
   schedule:
     - cron: "0 20 * * *" # daily at 3p/4p Central.
 jobs:
