@@ -1,7 +1,6 @@
 # .github/workflows/treebeard.yml
 # Run all notebooks on every push and daily
 on:
-  push:
   schedule:
     - cron: "0 20 * * *" # daily at 3p/4p Central.
 jobs:
@@ -12,13 +11,3 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
       - uses: treebeardtech/treebeard@master
-      - name: Commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add --all
-          git commit -m "Update" -a
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
