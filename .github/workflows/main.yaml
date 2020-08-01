@@ -23,7 +23,7 @@ jobs:
       with:
         notebook: "DunnCounty_COVID19.ipynb"
         params: "params.json"
-        isReport: False
+        isReport: True
         poll: False
     - name: move notebook
       run: |
