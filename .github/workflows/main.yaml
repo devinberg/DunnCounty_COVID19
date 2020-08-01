@@ -2,12 +2,31 @@
 # Run all notebooks on every push and daily
 on:
   schedule:
-    - cron: "0 20 * * *" # daily at 3p/4p Central.
+    - cron: "0 10,22 * * *" # twice daily
 jobs:
   run:
     runs-on: ubuntu-latest
-    name: Run treebeard
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - uses: treebeardtech/treebeard@master
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v1
+    - uses: yaananth/run-notebook@v1
+      env:
+        RUNNER: ${{ toJson(runner) }}
+        SECRETS: ${{ toJson(secrets) }}
+        GITHUB: ${{ toJson(github) }}
+      with:
+        notebook: "DunnCounty_COVID19.ipynb"
+        params: "params.json"
+        isReport: False
+        poll: False
+    - name: move notebook
+      run: |
+        cp /home/runner/work/_temp/nb-runner/DunnCounty_COVID19.ipynb .
+    - name: Commit and push files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add DunnCounty_COVID19.ipynb
+        git commit -m "Update notebook" -a
+        git push origin master
