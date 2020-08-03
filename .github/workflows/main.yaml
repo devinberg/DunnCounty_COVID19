@@ -24,7 +24,6 @@ jobs:
         notebook: "DunnCounty_COVID19.ipynb"
         params: "params.json"
         isReport: True
-        poll: False
     - name: move notebook
       run: |
         cp /home/runner/work/_temp/nb-runner/DunnCounty_COVID19.ipynb .
