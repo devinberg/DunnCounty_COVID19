@@ -1,6 +1,7 @@
 # Run notebook on every push and daily
 on:
   push:
+  workflow_dispatch:
   schedule:
     - cron: "0 10,22 * * *" # twice daily
 jobs:
