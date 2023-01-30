@@ -1,3 +1,4 @@
 pandas
 matplotlib
 IPython
+jupyter-client<8
